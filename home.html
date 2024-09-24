@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Distribution Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">MiDistro Music</div>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>SELL Your Music Worldwide</h1>
+            <p>Get your music on Spotify, Apple Music, and more.</p>
+            <a href="#signup" class="cta-button">Get Started</a>
+        </div>
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="images/sark1.jpg" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <img src="images/beeztrap.jpg" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <img src="images/kwesi.jpg" style="width:100%">
+            </div>
+        </div>
+    </section>
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+            let i;
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            setTimeout(showSlides, 2000); // Change image every 2 seconds
+        }
+    </script>
+    <section id="features">
+        <h2>Services</h2>
+        <div class="feature">
+            <h3>Global Reach</h3>
+            <p>Distribute your music to over 150 platforms worldwide.</p>
+        </div>
+        <div class="feature">
+            <h3>Keep 100% of Your Royalties</h3>
+            <p>We don't take a cut of your earnings.</p>
+        </div>
+        <div class="feature">
+            <h3>Comprehensive Analytics</h3>
+            <p>Track your music's performance with detailed reports.</p>
+        </div>
+    </section>
+    <section id="pricing">
+        <h2>Pricing</h2>
+        <div class="pricing-plan">
+            <h3>Starter</h3>
+            <p>$7.99/Yearly</p>
+            <p>Unlimited distribution</p>
+        </div>
+        <div class="pricing-plan">
+            <h3>Pro</h3>
+            <p>$11.99/Yearly</p>
+            <p>Unlimited distribution + advanced analytics</p>
+        </div>
+        <div class="pricing-plan">
+            <h3>Boost</h3>
+            <p>$20.99/Yearly</p>
+            <p>Unlimited distribution + advanced analytics</p>
+        </div>
+        <div class="pricing-plan">
+            <h3>Label</h3>
+            <p>$52.99/Yearly</p>
+            <p>Unlimited distribution + advanced analytics</p>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+            <link rel="stylesheet" href="style.css">
+        </form>
+    </section>
+    <footer>
+        <p>&copy; 2023 MusicDistribution. All rights reserved.</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
