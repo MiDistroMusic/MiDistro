@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiDistro Music - Advanced Global Music Distribution</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #FFFFFF;
+            --accent-color: #333333;
+            --text-color: #222222;
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            background-color: var(--secondary-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: var(--primary-color);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+        .logo .highlight-i,
+        .logo .highlight-t {
+            display: inline-block;
+            position: relative;
+        }
+        .logo .highlight-i {
+            font-size: 0.7em;
+            color: #ff6b6b;
+        }
+        .logo .highlight-i::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary-color);
+            bottom: -2px;
+            left: 0;
+        }
+        .logo .highlight-t::before {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 3px;
+            background-color: var(--secondary-color);
+            top: 50%;
+            left: -10%;
+            transform: translateY(-50%);
+        }
+        nav ul {
+            display: flex;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li {
+            margin-left: 30px;
+        }
+        nav ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #888;
+        }
+        .cta-buttons {
+            display: flex;
+            align-items: center;
+        }
+        .login-btn, .signup-btn {
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        .login-btn {
+            color: var(--secondary-color);
+            margin-right: 15px;
+        }
+        .signup-btn {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+        }
+        .signup-btn:hover {
+            background-color: #f0f0f0;
+        }
+        .main-content {
+            padding-top: 80px;
+        }
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/hero-bg.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--secondary-color);
+        }
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+        }
+        .section {
+            padding: 100px 0;
+            background-color: #f9f9f9;
+        }
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+        .services-grid, .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .service-item, .pricing-plan {
+            background-color: var(--secondary-color);
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .service-item:hover, .pricing-plan:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .service-item i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        .pricing-plan {
+            border: 1px solid #e0e0e0;
+            position: relative;
+        }
+        .pricing-plan.featured {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+        }
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 20px 0;
+            color: var(--primary-color);
+        }
+        .price span {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        .plan-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        .plan-btn:hover {
+            background-color: var(--accent-color);
+        }
+        .plan-label {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #ff6b6b;
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 20px;
+        }
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .submit-btn {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: var(--accent-color);
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: var(--secondary-color);
+            padding: 50px 0 20px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .footer-section {
+            margin-bottom: 30px;
+        }
+        .footer-section h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        .footer-section ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-section ul li a:hover {
+            color: #888;
+        }
+        .social-icons a {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #888;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            font-size: 0.9rem;
+        }
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .stat-label {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+        .featured-artists {
+            padding: 50px 0;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        .featured-artists h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+        }
+        .artist-grid {
+            display: flex;
+            gap: 30px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            animation: scroll 30s linear infinite;
+        }
+        .artist-item {
+            flex: 0 0 auto;
+            width: 200px;
+            text-align: center;
+        }
+        .artist-item img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .artist-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .artist-item p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#home" style="color: white;">M<span class="highlight-i">i</span>D<span class="highlight-i">i</span>s<span class="highlight-t">t</span>ro</a>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="cta-buttons">
+                <a href="#login" class="login-btn"></a>
+                <a href="#signup" class="signup-btn">GET STARTED</a>
+            </div>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round">
+                        <span class="sun"><i class="fas fa-sun"></i></span>
+                        <span class="moon"><i class="fas fa-moon"></i></span>
+                    </div>
+                </label>
+            </div>
+            <style>
+                .theme-switch-wrapper {
+                    display: flex;
+                    align-items: center;
+                }
+                .theme-switch {
+                    display: inline-block;
+                    height: 34px;
+                    position: relative;
+                    width: 60px;
+                }
+                .theme-switch input {
+                    display: none;
+                }
+                .slider {
+                    background-color: #e0e0e0;
+                    bottom: 0;
+                    cursor: pointer;
+                    left: 0;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    transition: .4s;
+                }
+                .slider:before {
+                    background-color: #fff;
+                    bottom: 4px;
+                    content: "";
+                    height: 26px;
+                    left: 4px;
+                    position: absolute;
+                    transition: .4s;
+                    width: 26px;
+                }
+                input:checked + .slider {
+                    background-color: #333;
+                }
+                input:checked + .slider:before {
+                    transform: translateX(26px);
+                }
+                .slider.round {
+                    border-radius: 34px;
+                }
+                .slider.round:before {
+                    border-radius: 50%;
+                }
+                .slider .sun, .slider .moon {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    font-size: 16px;
+                    transition: .4s;
+                }
+                .slider .sun {
+                    left: 5px;
+                    color: #333;
+                }
+                .slider .moon {
+                    right: 5px;
+                    color: #fff;
+                    opacity: 0;
+                }
+                input:checked + .slider .sun {
+                    opacity: 0;
+                }
+                input:checked + .slider .moon {
+                    opacity: 1;
+                }
+            </style>
+        </nav>
+    </header>
+
+    <main class="main-content">
+<section id="home" class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/hero-bg.jpg');">
+    <div class="hero-content">
+        <h1>Elevate Your Music Globally</h1>
+        <p>Cutting-edge distribution for the modern artist</p>
+        <a href="#signup" class="cta-button">GET STARTED</a>
+    </div>
+</section>
+
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number" id="songs-released">0</div>
+                <div class="stat-label">Songs Released</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="artists-released">0</div>
+                <div class="stat-label">Artists Released</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="stores-count">0</div>
+                <div class="stat-label">Stores</div>
+            </div>
+        </div>
+
+        <section class="featured-artists">
+            <h2>Featured Artists</h2>
+            <div class="artist-grid">
+                <div class="artist-item">
+                    <img src="images/sark1.jpg" alt="Artist 1">
+                    <h3>Sarkodie</h3>
+                    <p></p>
+                </div>
+                <div class="artist-item">
+                    <img src="images/amerado.jpg" alt="Artist 2">
+                    <h3>Amerado</h3>
+                    <p></p>
+                </div>
+                <div class="artist-item">
+                    <img src="images/beeztrap.jpg" alt="Artist 3">
+                    <h3>BeezTrap KOTM</h3>
+                    <p></p>
+                </div>
+                <div class="artist-item">
+                    <img src="images/kwesi.jpg" alt="Artist 4">
+                    <h3>Kwesi Amewuga</h3>
+                    <p></p>
+                </div>
+                <div class="artist-item">
+                    <img src="images/Stonebwoy.jpeg" alt="Artist 5">
+                    <h3>Stonebwoy</h3>
+                    <p></p>
+                </div>
+                <div class="artist-item">
+                    <img src="images/Black sherif 1.jpg" alt="Artist 6">
+                    <h3>Black Sherif</h3>
+                    <p></p>
+                </div>
+                <!-- Duplicate artists for seamless scrolling -->
+                <div class="artist-item">
+                    <img src="images/Graykells.jpeg" alt="Artist 1">
+                    <h3>GrayKells</h3>
+                    <p></p>
+                </div>
+                <div class="artist-item">
+                    <img src="images/mya sima.jpg" alt="Artist 2">
+                    <h3>Mya Sima</h3>
+                    <p></p>
+                </div>
+                <div class="artist-item">
+                    <img src="images/CINA SOUL.jpeg" alt="Artist 3">
+                    <h3>Cina Soul</h3>
+                    <p></p>
+                </div>
+                <div class="artist-item">
+                    <img src="images/KIDI.jpeg" alt="Artist 4">
+                    <h3>Kidi</h3>
+                    <p></p>
+                </div>
+                <div class="artist-item">
+                    <img src="images/Kuami EUGENE.jpg" alt="Artist 5">
+                    <h3>Kuami Eugene</h3>
+                    <p></p>
+                </div>
+                <div class="artist-item">
+                    <img src="images/Sbeirg.jpg" alt="Artist 6">
+                    <h3>Sbeirg</h3>
+                    <p></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <i class="fas fa-globe"></i>
+                    <h3>Global Distribution</h3>
+                    <p>Reach over 200+ digital platforms worldwide, ensuring your music is available to listeners everywhere.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Advanced Analytics</h3>
+                    <p>Gain valuable insights with real-time performance data, helping you make informed decisions about your music career.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <h3>Royalty Management</h3>
+                    <p>Efficient collection and distribution of your earnings, with transparent reporting and timely payouts.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Marketing Tools</h3>
+                    <p>Promote your music effectively with our integrated marketing solutions, including social media tools and playlist pitching.</p>
+                </div>
+            </div>
+        </section>
+        <section id="fan-analytics" class="section">
+            <h2>Fan Analytics Services</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Listening Behavior Analysis</h3>
+                    <p>Gain deep insights into play counts, skip rates, and listening duration to refine your musical strategy and enhance audience engagement.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>Geographical Insights</h3>
+                    <p>Leverage location-based analytics to plan targeted tours and create region-specific marketing campaigns that resonate with your audience.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>Audience Profiling</h3>
+                    <p>Uncover rich demographic and psychographic data to tailor your music and brand to your core listeners' preferences and interests.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Trend Forecasting</h3>
+                    <p>Stay ahead of the curve with AI-driven predictions on emerging musical trends and evolving listener preferences in the industry.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-share-alt"></i>
+                    <h3>Social Media Sharing</h3>
+                    <p>Empower fans to share their listening stats and favorite tracks directly to popular social media platforms, increasing engagement and organic reach.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Milestone Alerts</h3>
+                    <p>Celebrate fan achievements with personalized notifications for milestones like listening to a specific number of tracks or exploring a new genre.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="section">
+            <h2>Distribution Plans</h2>
+            <div class="pricing-grid">
+                <div class="pricing-plan">
+                    <h3>Starter</h3>
+                    <p class="price">$7.99<span>/yearly</span></p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Unlimited releases</li>
+                        <li><i class="fas fa-check"></i> Basic analytics</li>
+                        <li><i class="fas fa-check"></i> Standard support</li>
+                        <li><i class="fas fa-check"></i> 85% revenue share</li>
+                    </ul>
+                    <a href="#Getstarted" class="plan-btn">Choose Starter</a>
+                </div>                <div class="pricing-plan featured">
+                    <div class="plan-label">Most Popular</div>
+                    <h3>Pro</h3>
+                    <p class="price">$12.99<span>/yearly</span></p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> All Starter features</li>
+                        <li><i class="fas fa-check"></i> Advanced analytics</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Marketing tools</li>
+                        <li><i class="fas fa-check"></i> 90% revenue share</li>
+                    </ul>
+                    <a href="#Getstarted" class="plan-btn">Go Pro</a>
+                </div>                <div class="pricing-plan">
+                    <h3>Boost</h3>
+                    <p class="price">Custom</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> All Pro features</li>
+                        <li><i class="fas fa-check"></i> Multi-artist management</li>
+                        <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                        <li><i class="fas fa-check"></i> Custom API access</li>
+                        <li><i class="fas fa-check"></i> Negotiable revenue share</li>
+                    </ul>
+                    <a href="#contact" class="plan-btn">Contact Us</a>
+                </div>
+            </div>
+            <div class="pricing-plan">
+                <div class="plan-label">For Labels</div>
+                <h3>Label</h3>
+                <p class="price">Custom</p>
+                <ul>
+                    <li><i class="fas fa-check"></i> All Boost features</li>
+                    <li><i class="fas fa-check"></i> Multi-label management</li>
+                    <li><i class="fas fa-check"></i> Dedicated label support team</li>
+                    <li><i class="fas fa-check"></i> Custom reporting and analytics</li>
+                    <li><i class="fas fa-check"></i> Tailored revenue share options</li>
+                </ul>
+                <a href="#contact" class="plan-btn">Contact Us</a>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <h2>About MiDistro Music</h2>
+            <div class="about-content">
+                <p>MiDistro Music is at the forefront of digital music distribution, empowering artists with innovative technology and global reach. Our platform is designed to give independent musicians and labels the tools they need to succeed in today's competitive music industry. With a focus on transparency, efficiency, and artist empowerment, we're committed to helping you take your music career to the next level.</p>
+                <a href="#learn-more" class="cta-button">Learn More</a>
+            </div>
+            <div class="dsp-logos">
+                <h3>Distribute Your Music to Top Platforms</h3>
+                <div class="logo-container">
+                    <div class="logo-wrapper">
+                        <img src="images/spotify new.png" alt="Spotify" class="dsp-logo">
+                        <span class="logo-name">Spotify</span>
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="images/apple music new.png" alt="Apple Music" class="dsp-logo">
+                        <span class="logo-name">Apple Music</span>
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="images/amazon-music.png" alt="Amazon Music" class="dsp-logo">
+                        <span class="logo-name">Amazon Music</span>
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="images/YouTubeMusic.png" alt="YouTube Music" class="dsp-logo">
+                        <span class="logo-name">YouTube Music</span>
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="images/tidal.png" alt="Tidal" class="dsp-logo">
+                        <span class="logo-name">Tidal</span>
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="images/deezer.png" alt="Deezer" class="dsp-logo">
+                        <span class="logo-name">Deezer</span>
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="images/Tiktok.png" alt="TikTok" class="dsp-logo">
+                        <span class="logo-name">TikTok</span>
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="images/soundcloud.png" alt="Soundcloud" class="dsp-logo">
+                        <span class="logo-name">Soundcloud</span>
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="images/youtube.png" alt="Youtube" class="dsp-logo">
+                        <span class="logo-name">Youtube</span>
+                    </div>
+                    <div class="logo-wrapper">
+                        <img src="images/audiomack.png" alt="Audiomack" class="dsp-logo">
+                        <span class="logo-name">Audiomack</span>
+                    </div>
+                </div>
+                <p class="dsp-description">With MiDistro Music, your tracks reach millions of listeners worldwide. We partner with all major digital streaming platforms (DSPs) to ensure your music is available wherever your fans prefer to listen. From Spotify and Apple Music to Amazon Music and beyond, we've got you covered.</p>
+            </div>
+            <style>
+                .dsp-logos {
+                    background-color: #f8f9fa;
+                    padding: 40px;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                }
+                .dsp-logos h3 {
+                    text-align: center;
+                    margin-bottom: 30px;
+                    font-size: 24px;
+                    color: #333;
+                }
+                .logo-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 20px;
+                }
+                .logo-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    transition: transform 0.3s ease;
+                }
+                .logo-wrapper:hover {
+                    transform: scale(1.05);
+                }
+                .dsp-logo {
+                    width: 60px;
+                    height: 60px;
+                    object-fit: contain;
+                    filter: grayscale(100%);
+                    transition: filter 0.3s ease;
+                }
+                .logo-wrapper:hover .dsp-logo {
+                    filter: grayscale(0%);
+                }
+                .logo-name {
+                    margin-top: 5px;
+                    font-size: 12px;
+                    color: #666;
+                }
+                .dsp-description {
+                    text-align: center;
+                    margin-top: 30px;
+                    color: #555;
+                    line-height: 1.6;
+                    max-width: 800px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            </style>
+        </section>
+
+        <section id="team" class="section">
+            <h2>Meet Our Visionaries</h2>
+            <div class="team-container">
+                <!-- Team member 1 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/Sam.JPG" alt="Sam Bilson Jnr" class="team-photo">
+                        <div class="member-overlay">
+                            <div class="member-bio">
+                                <p>Revolutionizing the music industry with innovative solutions</p>
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-linkedi"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="team-name">Sam Bilson Jnr</h3>
+                    <p class="team-position">CEO & Founder</p>
+                </div>
+                <!-- Team member 2 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/Osei Ike.jpg" alt="Nana Osei Ike" class="team-photo">
+                        <div class="member-overlay">
+                            <div class="member-bio">
+                                <p>Empowering artists worldwide through financial expertise</p>
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="team-name">Nana Osei Ike</h3>
+                    <p class="team-position">Financial Maestro</p>
+                </div>
+                <!-- Team member 3 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/Godfred.jpg" alt="Godfred Amoako" class="team-photo">
+                        <div class="member-overlay">
+                            <div class="member-bio">
+                                <p>Crafting the future of music technology with cutting-edge solutions</p>
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="team-name">Godfred Amoako</h3>
+                    <p class="team-position">Tech Virtuoso</p>
+                </div>
+                <!-- Team member 4 -->
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="images/Mystic.jpg" alt="Mystic Owusu" class="team-photo">
+                        <div class="member-overlay">
+                            <div class="member-bio">
+                                <p>Discovering and nurturing the next generation of musical talent</p>
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" class="social-icon"><i class="fab fa-spotify"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="team-name">Mystic Owusu</h3>
+                    <p class="team-position">Talent Scout Extraordinaire</p>
+                </div>
+                <!-- Add more team members as needed -->
+            </div>
+        </section>
+
+        <style>
+            #team {
+                background-color: #f8f8f8;
+                padding: 60px 0;
+            }
+            .team-container {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 30px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+            .team-member {
+                flex-basis: calc(33.333% - 30px);
+                text-align: center;
+                background-color: #ffffff;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                transition: transform 0.3s ease;
+            }
+            .team-member:hover {
+                transform: translateY(-5px);
+            }
+            .member-image {
+                position: relative;
+                overflow: hidden;
+            }
+            .team-photo {
+                width: 100%;
+                height: 300px;
+                object-fit: cover;
+                transition: transform 0.3s ease;
+            }
+            .member-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            .member-bio {
+                color: #ffffff;
+                padding: 20px;
+                font-size: 14px;
+            }
+            .team-member:hover .member-overlay {
+                opacity: 1;
+            }
+            .team-member:hover .team-photo {
+                transform: scale(1.1);
+            }
+            .team-name {
+                margin: 15px 0 5px;
+                font-size: 20px;
+                color: #333;
+            }
+            .team-position {
+                margin: 0;
+                font-size: 16px;
+                color: #666;
+            }
+        </style>
+        
+            </div>
+        </section>
+        <section id="social-promotion" class="section">
+            <h2>Effortless Social Promotion</h2>
+            <div class="promotion-container">
+                <div class="promotion-content">
+                    <h3>Boost Your Reach Across Platforms</h3>
+                    <p>Amplify your music's impact with our integrated social promotion tools. Create and share eye-catching content effortlessly across all major social media platforms.</p>
+                    <ul class="promotion-features">
+                        <li><i class="fas fa-palette"></i> Customizable Templates</li>
+                        <li><i class="fas fa-share-alt"></i> One-Click Multi-Platform Sharing</li>
+                        <li><i class="fas fa-chart-bar"></i> Engagement Analytics</li>
+                        <li><i class="fas fa-calendar-alt"></i> Scheduled Posting</li>
+                    </ul>
+                </div>
+                <div class="promotion-visual">
+                    <img src="images/SOCIAL M.png" alt="Social Promotion Tools" class="promotion-image">
+                </div>
+            </div>
+        </section>
+
+        <style>
+            #social-promotion {
+                background-color: #ffffff;
+                padding: 60px 0;
+            }
+
+            .promotion-container {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .promotion-content {
+                flex-basis: 50%;
+                padding-right: 40px;
+            }
+
+            .promotion-content h3 {
+                font-size: 1.8em;
+                color: #333;
+                margin-bottom: 20px;
+            }
+
+            .promotion-content p {
+                font-size: 1em;
+                color: #666;
+                line-height: 1.6;
+                margin-bottom: 30px;
+            }
+
+            .promotion-features {
+                list-style-type: none;
+                padding: 0;
+            }
+
+            .promotion-features li {
+                font-size: 1.1em;
+                color: #333;
+                margin-bottom: 15px;
+                display: flex;
+                align-items: center;
+            }
+
+            .promotion-features i {
+                color: #007bff;
+                margin-right: 10px;
+                font-size: 1.2em;
+            }
+
+            .promotion-visual {
+                flex-basis: 50%;
+            }
+
+            .promotion-image {
+                max-width: 100%;
+                height: auto;
+                border-radius: 8px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            @media (max-width: 768px) {
+                .promotion-container {
+                    flex-direction: column;
+                }
+
+                .promotion-content, .promotion-visual {
+                    flex-basis: 100%;
+                    padding-right: 0;
+                    margin-bottom: 40px;
+                }
+            }
+        </style>
+
+        <style>
+            #music-discovery {
+                background-color: #f8f9fa;
+                padding: 60px 0;
+            }
+
+            .discovery-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            .discovery-item {
+                flex-basis: calc(25% - 30px);
+                margin: 15px;
+                padding: 30px;
+                background-color: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .discovery-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            .discovery-icon {
+                font-size: 2.5em;
+                color: #007bff;
+                margin-bottom: 20px;
+            }
+
+            .discovery-item h3 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .discovery-item p {
+                font-size: 0.9em;
+                color: #666;
+                line-height: 1.6;
+            }
+
+            @media (max-width: 992px) {
+                .discovery-item {
+                    flex-basis: calc(50% - 30px);
+                }
+            }
+
+            @media (max-width: 576px) {
+                .discovery-item {
+                    flex-basis: 100%;
+                }
+            }
+        </style>
+
+        <section id="contact" class="section">
+            <h2>Get in Touch</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+        <section id="virtual-events" class="section">
+            <h2>Virtual Showcases & Listening Parties</h2>
+            <div class="virtual-events-content">
+                <p class="section-intro">Connect with your audience like never before through our virtual event platform. Host live performances, exclusive listening parties, and interactive Q&A sessions.</p>
+                <div class="virtual-events-features">
+                    <div class="feature-item">
+                        <i class="fas fa-video feature-icon"></i>
+                        <h3>Live Streaming</h3>
+                        <p>High-quality, low-latency streaming for seamless performances.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-comments feature-icon"></i>
+                        <h3>Real-time Chat</h3>
+                        <p>Engage directly with your audience through live chat and reactions.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-ticket-alt feature-icon"></i>
+                        <h3>Ticketing & Access Control</h3>
+                        <p>Easily manage attendees with our integrated ticketing system.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line feature-icon"></i>
+                        <h3>Analytics & Insights</h3>
+                        <p>Gain valuable data on audience engagement and event performance.</p>
+                    </div>
+                </div>
+                <a href="#virtual-events-demo" class="cta-button">Schedule a Demo</a>
+            </div>
+        </section>
+
+        <style>
+            #virtual-events {
+                background-color: #f8f9fa;
+                padding: 60px 0;
+            }
+
+            .virtual-events-content {
+                max-width: 1200px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .section-intro {
+                font-size: 1.2em;
+                color: #555;
+                margin-bottom: 40px;
+                max-width: 800px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .virtual-events-features {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 30px;
+                margin-bottom: 40px;
+            }
+
+            .feature-item {
+                flex-basis: calc(25% - 30px);
+                background-color: #ffffff;
+                padding: 30px;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .feature-item:hover {
+                transform: translateY(-5px);
+            }
+
+            .feature-icon {
+                font-size: 2.5em;
+                color: #007bff;
+                margin-bottom: 20px;
+            }
+
+            .feature-item h3 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+                color: #333;
+            }
+
+            .feature-item p {
+                font-size: 0.9em;
+                color: #666;
+            }
+
+            .cta-button {
+                display: inline-block;
+                background-color: #007bff;
+                color: #ffffff;
+                padding: 12px 24px;
+                border-radius: 5px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+
+            .cta-button:hover {
+                background-color: #0056b3;
+            }
+
+            @media (max-width: 992px) {
+                .feature-item {
+                    flex-basis: calc(50% - 30px);
+                }
+            }
+
+            @media (max-width: 576px) {
+                .feature-item {
+                    flex-basis: 100%;
+                }
+            }
+        </style>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#press">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#help">Help Center</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#api">API</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#terms">Terms of Service</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#copyright">Copyright</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 MiDistro Music. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const songsReleased = document.getElementById("songs-released");
+        const artistsReleased = document.getElementById("artists-released");
+        const storesCount = document.getElementById("stores-count");
+
+        animateValue(songsReleased, 0, 1000000, 2000);
+        animateValue(artistsReleased, 0, 50000, 2000);
+        animateValue(storesCount, 0, 200, 2000);
+    </script>
+</body>
+</html>
+
