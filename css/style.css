@@ -39,7 +39,7 @@ nav ul li a:hover {
 
 .hero {
     background: url('images/amerado.jpg') no-repeat center center/cover;
-    color: #fff;
+    color: green;
     padding: 200px 0;
     text-align: center;
     position: relative;
@@ -58,6 +58,7 @@ nav ul li a:hover {
 .hero-content {
     position: relative;
     z-index: 1;
+    background-color: blue;
 }
 
 .hero-content h1 {
@@ -191,9 +192,9 @@ form input, form textarea {
 }
 
 form button {
-    background-color: #0044cc;
+    background-color: #ececec;
     border: none;
-    color: #fff;
+    color: #ce0606;
     padding: 15px 30px;
     text-decoration: none;
     font-size: 1.2em;
