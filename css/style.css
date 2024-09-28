@@ -264,3 +264,10 @@ footer {
 .slideshow-dots span.active {
     background-color: #0044cc;
 }
+@media (max-width: 768px) {
+    .burger-menu {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px !important;
+    }

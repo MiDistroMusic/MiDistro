@@ -46,16 +46,23 @@
             align-items: center;
         }
 
+        .left-section {
+            display: flex;
+            align-items: center;
+        }
+
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color);
+            margin-left: 15px;
         }
 
         nav ul {
+            display: flex;
             list-style-type: none;
             padding: 0;
-            display: flex;
+            margin: 0;
         }
 
         nav ul li {
@@ -74,7 +81,7 @@
         }
 
         .hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/kidi.jpg');
+            background-color: rgba(0, 0, 0, 0.7);
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -82,10 +89,22 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            color: white;
+            object-fit: 10px 10px;
+            object-position: cover;
         }
 
         .hero-content {
             max-width: 800px;
+        }
+
+        .hero-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover;
+            object-position: 0px 50px;
         }
 
         .hero h1 {
@@ -368,19 +387,88 @@
             font-size: 0.9rem;
         }
 
+        .burger-menu {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .bar {
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary-color);
+            position: absolute;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .bar:nth-child(1) { top: 0; }
+        .bar:nth-child(2) { top: 8px; }
+        .bar:nth-child(3) { top: 16px; }
+
+        .burger-menu.active .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .burger-menu.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
         @media (max-width: 768px) {
+            .burger-menu {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                height: calc(100% - 60px);
+                background-color: var(--secondary-color);
+                transition: left 0.3s ease-in-out;
+            }
+
+            nav.active {
+                left: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+        }
+
+        /* @media (max-width: 768px) {
             .footer-content {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
-        }
+        } */
     </style>
 </head>
 <body>
     <header>
         <div class="container header-content">
-            <div class="logo">MiDistro</div>
+            <div class="left-section">
+                <div class="burger-menu" id="burger-menu">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <div class="logo">MiDistro</div>
+            </div>
             <nav>
-                <ul>
+                <ul id="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#License Your Music">License Your Music</a></li>
                     <li><a href="#services">Services</a></li>
@@ -395,6 +483,7 @@
 
     <main>
         <section id="home" class="hero">
+            <img  class="hero-image" src="images/giphy.gif" alt="hero-image">
             <div class="hero-content">
                 <h1>Elevate Your Music Globally</h1>
                 <p>Your premier partner for global music distribution and artist promotion</p>
@@ -618,8 +707,14 @@
         </div>
     </footer>
 
-    <script>
-        // ... (rest of the scripts) ...
-    </script>
+   <script>
+    const burgerMenu = document.getElementById('burger-menu');
+    const nav = document.querySelector('nav');
+
+    burgerMenu.addEventListener('click', function() {
+        this.classList.toggle('active');
+        nav.classList.toggle('active');
+    });
+</script>
 </body>
 </html>
